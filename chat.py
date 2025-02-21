@@ -4,9 +4,8 @@ import argparse
 import os
 from dotenv import load_dotenv
 
+#load the openrouter key 
 load_dotenv()
-
-#OPENROUTER_API_KEY = "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"
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_KEY")
 
 
@@ -72,7 +71,7 @@ def main(model_id):
             response = chat(user_input, model_id)
             
             print(f"\n\33[35mAssistant:\033[0m {response}")
-        except KeyboardInterrupt:
+        except KeyboardInterrupt: #TODO improve the exit way
             print(f"Assistant: Bye, Bye!")
             break
 
@@ -83,7 +82,7 @@ if __name__ == "__main__":
     parser.add_argument("--model", "-m", help = "Model name in the format (all lower): {name} {version} {size}.\n E.g. llama 3.2. 1b instruct")
     parser.add_argument("--mlist", "-ml", help = "Get the list of available free models with the open router api", action = "store_true")
     args = parser.parse_args()
-    parser.print_help()
+    
     
     if args.mlist:
         get_model_id(print_list=True)
@@ -94,13 +93,3 @@ if __name__ == "__main__":
     #launch the main chat
     main(model_id)
     
-    
-    # while True:
-    #     user_input = input("\n\033[92mUser:\033[0m ")
-    #     try:
-    #       response = chat(user_input)
-          
-    #       print(f"\n\33[35mAssistant:\033[0m {response}")
-    #     except KeyboardInterrupt:
-    #         print(f"Assistant: Bye, Bye!")
-    #         break
