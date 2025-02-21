@@ -37,8 +37,11 @@ def get_model_id(model_name:str = "", print_list = False):
             return models_id[model_name]
         except:
             print("The name you passed is not valid. Check the list of available models correct names by passing --mlist on CLI.")
+            exit() #TODO better handle this exit
+
     else:
-        print("Empty model name. Please provide a valid model name.")
+        print("Empty model name. Please provide a valid model name. Check the list of available models correct names by passing --mlist on CLI.")
+        exit() #TODO better handle this exit
 
 
 
